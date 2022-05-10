@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from fastapi_versioning import VersionedFastAPI
-from routers import main_router
+from routers import main_router, post_router
 app = FastAPI(
     title="Veloog",
     description="Veloog clone coding"
 )
 app.include_router(main_router.router)
+app.include_router(post_router.router)
 
 
 if __name__ == '__main__':
