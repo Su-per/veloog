@@ -10,6 +10,6 @@ app.include_router(main_router.router)
 
 if __name__ == '__main__':
     import uvicorn
-    app = VersionedFastAPI(app, version_format = "{major}", prefix_format = "/v{major}",)
+    app = VersionedFastAPI(app, version_format = "{major}", prefix_format = "/api/v{major}",)
     uvicorn.run(app, host='0.0.0.0', port=8000)
     
