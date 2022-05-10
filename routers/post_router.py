@@ -6,9 +6,10 @@ router = APIRouter()
 
 @router.get("/post/{post_id}")
 @version(1)
-def trending(post_id: int, db: Session = Depends(Session)):
+def get_post(post_id: int, db: Session = Depends(Session)):
     result = {}
     db.execute(f"SELECT * FROM post WHERE post_id = {post_id}")
+    db.cache = db.cache[0]
     result["id"] = db.cache[0]
     result["writer_id"] = db.cache[1]
     result["description"] = db.cache[4]
@@ -17,7 +18,7 @@ def trending(post_id: int, db: Session = Depends(Session)):
     result["content"] = db.cache[7]
     result["tag"] = db.cache[8].split(",")
     db.execute(f"SELECT * FROM user WHERE user_id = {db.cache[1]}")
-    print(db.cache)
+    db.cache = db.cache[0]
     result["writer_nickname"] = db.cache[1]
     result["user_thumbnail_url"] = db.cache[2]
     result["veloog_id"] = db.cache[3]

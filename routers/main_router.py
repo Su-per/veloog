@@ -6,9 +6,9 @@ router = APIRouter()
 
 @router.get("/trending")
 @version(1)
-def trending(db: Session = Depends(Session)):
+def trending(page: int, db: Session = Depends(Session)):
     result = []
-    for data in db.execute("SELECT * FROM post ORDER BY likes DESC LIMIT 50"):
+    for data in db.execute(f"SELECT * FROM post ORDER BY likes DESC LIMIT {page*20 + 1}, {(page+1) * 20}"):
         result.append({
             "id": data[0],
             "writer_id": data[1],
@@ -24,9 +24,9 @@ def trending(db: Session = Depends(Session)):
 
 @router.get("/recent")
 @version(1)
-def recent(db: Session = Depends(Session)):
+def recent(page: int, db: Session = Depends(Session)):
     result = []
-    for data in db.execute("SELECT * FROM post ORDER BY date DESC LIMIT 50"):
+    for data in db.execute(f"SELECT * FROM post ORDER BY date DESC LIMIT {page*20 + 1}, {(page+1) * 20}"):
         result.append({
             "id": data[0],
             "writer_id": data[1],
