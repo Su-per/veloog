@@ -1,21 +1,18 @@
-from click import edit
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from os import stat
 from config import DB
+import pymysql
 
-DB_URL = f"mysql+pymysql://{DB['user']}:{DB['password']}@{DB['host']}:{DB['port']}/{DB['database']}?charset=utf8"
+class Session:
+    conn: any
+    cursor: any
+    cache: any
 
-engine = create_engine(DB_URL, encoding='utf-8')
+    def __init__(self):
+        self.conn = pymysql.connect(host=DB['host'], user=DB['user'], password=DB['password'], db=DB['database'], port=DB['port'], charset='utf8')
+        self.cursor = self.conn.cursor()
 
-session = sessionmaker(autocommit=True, autoflush=True, bind=engine)
-
-Base = declarative_base()
-Base.metadata.create_all(bind=engine)
-
-def get_db():
-    db = session()
-    try:
-        yield db
-    finally:
-        db.close()
+    def execute(self, sql: str):
+        self.cursor.execute(sql)
+        self.cache = self.cursor.fetchall()
+        self.conn.commit()
+        return self.cache
