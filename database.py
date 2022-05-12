@@ -4,10 +4,9 @@ import pymysql
 
 
 class Session:
-    conn: any
-    cursor: any
+    conn: pymysql.connections.Connection
+    cursor: pymysql.connect.cursor
     cache: any
-    exp: str
 
     def __init__(self):
         self.conn = pymysql.connect(
