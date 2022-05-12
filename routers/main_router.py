@@ -7,7 +7,7 @@ router = APIRouter()
 
 @router.get("/trending")
 @version(1)
-def trending(page: int, db: Session = Depends(Session)):
+def trending(page: int = 0, db: Session = Depends(Session)):
     result = []
     for data in db.execute(
         f"SELECT * FROM post ORDER BY likes DESC LIMIT {page*20 + 1}, {(page+1) * 20}"

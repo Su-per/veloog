@@ -7,6 +7,7 @@ class Session:
     conn: any
     cursor: any
     cache: any
+    exp: str
 
     def __init__(self):
         self.conn = pymysql.connect(
