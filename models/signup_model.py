@@ -2,19 +2,19 @@ from pydantic import BaseModel
 
 
 class SignupReq(BaseModel):
-    email: str
+    email: str = "email"
 
 
 class SignupRedirectReq(BaseModel):
-    nickname: str
-    id: str
-    bio: str
+    nickname: str = "nickname"
+    id: str = "id"
+    bio: str = "bio"
 
 
 class SignupRes(BaseModel):
-    message: str
-    code: str
+    message: str = "Success"
+    code: str = "temporary code"
 
 
 class SignupRedirectRes(BaseModel):
-    message: str
+    message: str = "Success"

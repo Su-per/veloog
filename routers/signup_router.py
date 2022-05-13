@@ -24,7 +24,7 @@ def sendMail(email: str, code: str):
     s.sendmail("juyoon7163@gmail.com", email, msg.as_string())
 
 
-@router.post("/signup", response_model=SignupRes)
+@router.post("/signup", response_model=SignupRes, tags=["signup"])
 @version(1)
 def signup(req: SignupReq, send_mail: BackgroundTasks, db: Session = Depends(Session)):
     code = hashlib.md5(req.email.encode()).hexdigest()
@@ -33,7 +33,7 @@ def signup(req: SignupReq, send_mail: BackgroundTasks, db: Session = Depends(Ses
     return {"message": "success", "code": code}
 
 
-@router.post("/signup/redirect", response_model=SignupRedirectRes)
+@router.post("/signup/redirect", response_model=SignupRedirectRes, tags=["signup"])
 @version(1)
 def signup_redirect(req: SignupRedirectReq, code: str, db: Session = Depends(Session)):
     db.execute(f"SELECT * FROM email_auth WHERE code = '{code}'")

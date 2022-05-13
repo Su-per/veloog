@@ -5,7 +5,7 @@ from database import Session
 router = APIRouter()
 
 
-@router.get("/post/{post_id}")
+@router.get("/post/{post_id}", tags=["post"])
 @version(1)
 def get_post(post_id: int, db: Session = Depends(Session)):
     result = {}

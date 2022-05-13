@@ -4,7 +4,7 @@ import uvicorn
 from routers import main_router, post_router, signup_router
 
 
-app = FastAPI(title="Veloog", description="Velog clone coding")
+app = FastAPI(title="Veloog", description="Velog clone coding api docs")
 app.include_router(main_router.router)
 app.include_router(post_router.router)
 app.include_router(signup_router.router)
