@@ -1,6 +1,6 @@
 DB = {
     "user": "root",
-    "password": "toor",
+    "password": "adasda",
     "host": "localhost",
     "database": "veloog",
     "port": 3306,
