@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     DB_HOST: str = os.getenv("DB_HOST")
     DB_PORT: int = os.getenv("DB_PORT")
     SQLALCHEMY_DB_URL: str = (
-        f"mysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+        f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     )
 
 
