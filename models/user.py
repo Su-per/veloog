@@ -7,6 +7,7 @@ class User(Base):
 
     user_id = Column(Integer, primary_key=True)
     nickname = Column(String(50))
+    bio = Column(Text)
     user_thumbnail_url = Column(Text)
     veloog_id = Column(String(50))
     email_show = Column(String(50))
