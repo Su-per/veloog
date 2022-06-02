@@ -7,4 +7,4 @@ router = APIRouter()
 
 @router.get("/trending")
 async def trending(pages: int = 0):
-    pass
+    print(db.session.query(Post).all())
