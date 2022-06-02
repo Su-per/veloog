@@ -6,5 +6,5 @@ router = APIRouter()
 
 
 @router.get("/trending")
-async def trending(pages: int = 0):
+async def trending(pages: int = 0, period: str = "today"):
     pass
