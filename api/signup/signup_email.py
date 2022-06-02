@@ -25,5 +25,10 @@ async def signup_email(signup_email: SignupEmail):
         raise HTTPException(status_code=400, detail="잘못된 코드입니다.")
     else:
         db.session.query(Auth).filter_by(code=signup_email.code).delete()
+        db.session.add(User(
+            nickname=signup_email.nickname, 
+            bio=signup_email.bio, 
+            veloog_id=signup_email.veloog_id, 
+            email=signup_email.email
+        ))
         db.session.commit()
-        
