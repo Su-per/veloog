@@ -1,4 +1,3 @@
-from turtle import st
 from pydantic import BaseModel
 
 class SendMail(BaseModel):
